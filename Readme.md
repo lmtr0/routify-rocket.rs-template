@@ -7,5 +7,8 @@ Additionally you already have a mongo client setup out of the box
 ```sh
 # First time ?
 pnpm install
-cargo run
+cargo build
+
+# Running
+make run
 ```
