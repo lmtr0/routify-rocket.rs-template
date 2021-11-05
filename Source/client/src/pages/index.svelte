@@ -1,0 +1,1 @@
+<h1>Template for running routify apps with rocket.rs and graphql</h1>

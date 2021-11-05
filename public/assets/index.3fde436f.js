@@ -1,0 +1,1 @@
+import{S as r,i as o,s as c,e as i,j as l,n,l as p}from"./vendor.0c6ecc20.js";function u(s){let e;return{c(){e=i("h1"),e.textContent="Template for running routify apps with rocket.rs and graphql"},m(t,a){l(t,e,a)},p:n,i:n,o:n,d(t){t&&p(e)}}}class m extends r{constructor(e){super();o(this,e,null,u,c,{})}}export{m as default};

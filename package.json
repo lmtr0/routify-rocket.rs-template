@@ -1,0 +1,11 @@
+{
+    "private": "true",
+    "workspaces": [
+        "./Source/client"
+    ],
+
+    "scripts": {
+        "build": "cd Source/client && pnpm run build",
+        "dev": "cd Source/client && WATCH_BUILD=\"true\" pnpm run build"
+    }
+}
