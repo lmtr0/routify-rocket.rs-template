@@ -8,13 +8,20 @@ pub struct Mutation;
 
 #[juniper::graphql_object(Context = Ctx)]
 impl Mutation {
-    async fn createSomething(_context: &Ctx, input: CustomInput) -> String {
+    async fn createSomething(context: &Ctx, input: CustomInput) -> String {
         let mut input = input;
-        // let col = context.db.collection::<CustomInput>("accounts");
+        let col = context.db.collection::<CustomInput>("accounts");
         input._id = Uuid::new_v4().to_string();
-        // let res = col.insert_one(input, None).await;
+        let res = col.insert_one(input, None).await;
+        
+        if let Err(e) = res {
+            log::error!("Error while creating document {}", e);
+            String::from("databse error")
+        }
+        else {
+            String::from("Hello From Mutation")
+        }
 
-        String::from("Hello From Mutation")
     }
 }
 

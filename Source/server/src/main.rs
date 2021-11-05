@@ -46,7 +46,7 @@ async fn main() {
     let host = env::var("HOST").unwrap_or("127.0.0.1".to_string());
 
     let schema = generate_schema();
-    // let db = setup_db().await;
+    let db = setup_db().await;
 
     let mut config = rocket::Config::default();
     config.port = port.parse().unwrap_or(3000);
@@ -59,7 +59,7 @@ async fn main() {
 
     Rocket::custom(&config)
         // Services
-        // .manage(Arc::new(db))
+        .manage(Arc::new(db))
         .manage(schema)
         
         // Routes

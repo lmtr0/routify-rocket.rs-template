@@ -39,14 +39,14 @@ pub fn gql_graphiql_handler() -> Html<String> {
 #[rocket::post("/gql", data = "<request>")]
 pub async fn gql_handler(
     request: GraphQLRequest,
-    // db: &State<Arc<Database>>,
+    db: &State<Arc<Database>>,
     schema: &State<Schema>,
     
     auth: AuthGuard,
     req_cookies: &rocket::http::CookieJar<'_>,
 ) -> GraphQLResponse {
     let mut jar: HashMap<String, Cookie<'static>> = HashMap::new();
-    // let db = Arc::clone(db);
+    let db = Arc::clone(db);
 
     // gets the cookies to the request
     for cookie in req_cookies.iter() {
@@ -56,7 +56,7 @@ pub async fn gql_handler(
 
     let context = Ctx {
         cookiejar: Mutex::new(CookieJar::new(jar)),
-        // db,
+        db,
         user_id: auth.refresh_token,
     };
 
